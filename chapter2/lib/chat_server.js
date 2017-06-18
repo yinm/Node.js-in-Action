@@ -37,3 +37,28 @@ function assignGuestName(socket, guestNumber, nickNames, namesUsed) {
   namesUsed.push(name);
   return guestNumber + 1;
 }
+
+function joinRoom(socket, room) {
+  socket.join(room);
+  currentRoom[socket.id] = room;
+  socket.emit('joinResult', {room: room});
+  socket.broadcast.to(room).emit('message', {
+    text: nickNames[socket.id] + ' has joined ' + room + '.'
+  });
+
+  const usersInRoom = io.sockets.clients(room);
+  if (usersInRoom.length > 1) {
+    let usersInRoomSumary = 'Users currently in ' + room + ': ';
+    for (let index in usersInRoom) {
+      let userSocketId = usersInRoom[index].id;
+      if (userSocketId != socket.id) {
+        if (index > 0) {
+          usersInRoomSumary += ', ';
+        }
+        usersInRoomSumary += nickNames[userSocketId];
+      }
+    }
+    usersInRoomSumary += '.';
+    socket.emit('message', {text: usersInRoomSumary});
+  }
+}
