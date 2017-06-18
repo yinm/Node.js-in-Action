@@ -1,1 +1,1 @@
-# Node.js-in-Action
+[実践Node.jsプログラミング Node.jsの基礎知識からアプリケーション開発、テスト、配置／応用までスケーラブルで高速なWeb構築に必要なすべて](http://www.shoeisha.co.jp/book/detail/9784798129471)をやってます。
