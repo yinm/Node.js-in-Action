@@ -95,3 +95,11 @@ function handleNameChangeAttempts(socket, nickNames, namesUseed) {
     }
   });
 }
+
+function handleMessageBroadcasting(socket) {
+  socket.on('message', function(message) {
+    socket.broadcast.to(message.room).emit('message', {
+      text: nickNames[socket.id] + ': ' + message.text
+    });
+  });
+}
