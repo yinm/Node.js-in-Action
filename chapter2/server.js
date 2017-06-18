@@ -41,3 +41,16 @@ function serveStatic(response, cache, absPath) {
     });
   }
 }
+
+const server = http.createServer(function(request, response) {
+  let filePath = false;
+
+  if (request.url == '/') {
+    filePath = 'public/index.html';
+  } else {
+    filePath = 'public' + request.url;
+  }
+
+  const absPath = './' + filePath;
+  serverStatic(response, cache, absPath);
+});
