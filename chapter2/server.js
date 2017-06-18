@@ -59,5 +59,5 @@ server.listen(3000, function() {
   console.log('Server listening on port 3000');
 });
 
-const ChatServer = require('./lib/chat_server');
+const chatServer = require('./lib/chat_server');
 chatServer.listen(server);
