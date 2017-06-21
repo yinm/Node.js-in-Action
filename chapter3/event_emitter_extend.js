@@ -3,3 +3,7 @@ function Watcher(watchDir, processedDir) {
   this.processedDir = processedDir;
 }
 
+const events = require('events');
+const util = require('util');
+
+util.inherits(Watcher, events.EventEmitter);
