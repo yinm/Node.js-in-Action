@@ -29,3 +29,14 @@ Watcher.prototype.start = function() {
     watcher.watch();
   });
 };
+
+const watcher = new Watcher(watchDir, processedDir);
+
+watcher.on('process', function process(file) {
+  const watchFile = this.watchDir + '/' + file;
+  const processedFile = this.processedDir + '/' + file.toLowerCase();
+
+  fs.rename(watchFile, processedFile, function(err) {
+    if (err) throw err;
+  });
+});
