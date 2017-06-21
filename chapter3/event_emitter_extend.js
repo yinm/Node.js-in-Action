@@ -40,3 +40,5 @@ watcher.on('process', function process(file) {
     if (err) throw err;
   });
 });
+
+watcher.start();
